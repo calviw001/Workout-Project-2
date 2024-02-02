@@ -1,7 +1,18 @@
+def create_cypher(line, key, a_list, branch):
+  for character in line:
+    branch += character
+    # print(branch)
+    if len(branch) == key:
+      a_list.append(branch)
+      branch = ""
+  a_list.append(branch)
+  return a_list
 
-
-
+  
 def main():
-  pass
+  test_string = "This.is.the.UCI.ICS32.Programming.with.Software.Libraries.course!"
+  test_key = 11
+  print(create_cypher(test_string, test_key, [], ""))
+  
 
 main()
