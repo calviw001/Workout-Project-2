@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import encrypt_message
 
 def read_text(file_name, key, a_list, branch):
   current_directory = Path.cwd()
@@ -17,31 +17,15 @@ def read_text(file_name, key, a_list, branch):
   return a_list
 
 
-def create_cypher(text_list):
-  rows_list = []
-  for character in text_list[0]:
-    rows_list.append(character)
-  #print(rows_list)
-
-  for text_section in text_list[1:]:
-    i = 0
-    for character in text_section:
-      rows_list[i] += character
-      i += 1
-  #print(rows_list)
-
-  return rows_list
-
-  
 def main():
   input_file = "originaltext.txt"
   # output_file = "encryptedtext.txt"
   # test_string1 = "This.is.the.UCI.ICS32.Programming.with.Software.Libraries.course!"
   test_key = 11
   text_list = read_text(input_file, test_key, [], "")
-  print(text_list)
-  encrypted_text_rows = create_cypher(text_list)
-  print(encrypted_text_rows)
+  # print(text_list)
+  encrypted_message = encrypt_message.create_cypher(text_list)
+  print(encrypted_message)
   
 
 main()
