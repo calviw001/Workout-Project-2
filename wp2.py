@@ -17,15 +17,24 @@ def read_text(file_name, key, a_list, branch):
   return a_list
 
 
+def write_into_file(encrypted_message, file_name):
+  current_directory = Path.cwd()
+  file_path = current_directory / file_name
+  f = open(file_path, "w")
+  f.write(encrypted_message)
+  f.close()
+
+
 def main():
   input_file = "originaltext.txt"
-  # output_file = "encryptedtext.txt"
+  output_file = "encryptedtext.txt"
   # test_string1 = "This.is.the.UCI.ICS32.Programming.with.Software.Libraries.course!"
   test_key = 11
   text_list = read_text(input_file, test_key, [], "")
   # print(text_list)
   encrypted_message = encrypt_message.create_cypher(text_list)
   print(encrypted_message)
+  write_into_file(encrypted_message, output_file)
   
 
 main()
