@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 import encrypt_message
-
+import key_validation
 
 def check_input_file(file_name):
   current_directory = Path.cwd()
@@ -41,13 +41,16 @@ def main():
   input_file = "originaltext.txt"
   output_file = "encryptedtext.txt"
   # test_string1 = "This.is.the.UCI.ICS32.Programming.with.Software.Libraries.course!"
-  test_key = 11
+  test_key = '11'
   file_size = check_input_file(input_file)
-  print(file_size)
-  text_list = read_and_create_text_list(input_file, test_key, [], "")
-  encrypted_message = encrypt_message.encrypt(text_list)
-  print(encrypted_message)
-  write_into_file(encrypted_message, output_file)
+  # print(file_size)
+  if key_validation.check_test_key(test_key, file_size):
+    text_list = read_and_create_text_list(input_file, int(test_key), [], "")
+    encrypted_message = encrypt_message.encrypt(text_list)
+    print(encrypted_message)
+    write_into_file(encrypted_message, output_file)
+  else:
+    print("You entered an invlaid secret key!")
   
 
 main()
