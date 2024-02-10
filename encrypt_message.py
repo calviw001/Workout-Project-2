@@ -1,4 +1,4 @@
-def create_cypher(text_list):
+def encrypt(text_list):
     matrix = []
     for character in text_list[0]:
         matrix.append(character)
