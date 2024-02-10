@@ -1,5 +1,17 @@
+import sys
 from pathlib import Path
 import encrypt_message
+
+
+def check_input_file(file_name):
+  current_directory = Path.cwd()
+  file_path = current_directory / file_name
+  if file_path.exists() and file_path.is_file():
+    return file_path.stat().st_size
+  else:
+    print("Your input file does not exist!!")
+    sys.exit()
+
 
 def read_and_create_text_list(file_name, key, a_list, branch):
   current_directory = Path.cwd()
@@ -30,6 +42,8 @@ def main():
   output_file = "encryptedtext.txt"
   # test_string1 = "This.is.the.UCI.ICS32.Programming.with.Software.Libraries.course!"
   test_key = 11
+  file_size = check_input_file(input_file)
+  print(file_size)
   text_list = read_and_create_text_list(input_file, test_key, [], "")
   encrypted_message = encrypt_message.encrypt(text_list)
   print(encrypted_message)
