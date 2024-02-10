@@ -15,7 +15,6 @@ def _check_length(an_int, upper_bound):
     return an_int < upper_bound
 
 
-# Temporary main function to test private functions
 def check_test_key(key, file_size):
     if _is_int(key):
         key = int(key)
