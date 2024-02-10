@@ -55,8 +55,6 @@ def main():
       decrypted_message = decrpyt_message.decrypt_text(text_list_D)
       # print(decrypted_message)
       write_into_file(decrypted_message, output_file)
-  else:
-    print("You entered an invalid secret key!")
   
 
 main()
