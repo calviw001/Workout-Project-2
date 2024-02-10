@@ -13,22 +13,6 @@ def check_input_file(file_name):
     sys.exit()
 
 
-def read_and_create_text_list(file_name, key, a_list, branch):
-  current_directory = Path.cwd()
-  file_path = current_directory / file_name
-  f = open(file_path, "r")
-  for text_message in f:
-    for character in text_message:
-      branch += character
-      # print(branch)
-      if len(branch) == key:
-        a_list.append(branch)
-        branch = ""
-    a_list.append(branch)
-  f.close()
-  return a_list
-
-
 def write_into_file(encrypted_message, file_name):
   current_directory = Path.cwd()
   file_path = current_directory / file_name
@@ -43,12 +27,15 @@ def main():
   # test_string1 = "This.is.the.UCI.ICS32.Programming.with.Software.Libraries.course!"
   test_key = '11'
   file_size = check_input_file(input_file)
+  e_d = input().strip()
   # print(file_size)
   if key_validation.check_test_key(test_key, file_size):
-    text_list = read_and_create_text_list(input_file, int(test_key), [], "")
-    encrypted_message = encrypt_message.encrypt(text_list)
-    print(encrypted_message)
-    write_into_file(encrypted_message, output_file)
+    if e_d == '-e':
+      text_list = encrypt_message.read_and_create_text_list(input_file, int(test_key), [], "")
+      print(text_list)
+      encrypted_message = encrypt_message.encrypt_text(text_list)
+      print(encrypted_message)
+      write_into_file(encrypted_message, output_file)
   else:
     print("You entered an invlaid secret key!")
   
