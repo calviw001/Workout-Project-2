@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 import encrypt_message
+import decrpyt_message
 import key_validation
 
 def check_input_file(file_name):
@@ -27,7 +28,7 @@ def main():
   # test_string1 = "This.is.the.UCI.ICS32.Programming.with.Software.Libraries.course!"
   test_key = '11'
   file_size = check_input_file(input_file)
-  e_d = input().strip()
+  e_d = '-d'
   # print(file_size)
   if key_validation.check_test_key(test_key, file_size):
     if e_d == '-e':
@@ -35,7 +36,11 @@ def main():
       print(text_list)
       encrypted_message = encrypt_message.encrypt_text(text_list)
       print(encrypted_message)
+      print(len(encrypted_message))
       write_into_file(encrypted_message, output_file)
+    if e_d == '-d':
+      decrpyt_message.read_and_create_text_list(output_file, int(test_key), [], "")
+      pass
   else:
     print("You entered an invlaid secret key!")
   
