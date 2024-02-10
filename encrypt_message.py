@@ -1,7 +1,7 @@
 from pathlib import Path
 
 
-def read_and_create_text_list(file_name, key, a_list, branch):
+def read_and_create_text_list_E(file_name, key, a_list, branch):
   current_directory = Path.cwd()
   file_path = current_directory / file_name
   f = open(file_path, "r")
@@ -26,7 +26,7 @@ def encrypt_text(text_list):
         for character in text_section:
             matrix[i] += character
             i += 1
-    print(matrix)
+    # print(matrix)
     encrypted_message = ""
     for row in matrix:
         encrypted_message += row
